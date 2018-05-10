@@ -91,6 +91,11 @@ public class LibroDAO extends SQLiteOpenHelper {
         return arrayListAutor;
     }
 
+    public void cargarAutor(ContentValues row){
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert("autor", null, row);
+    }
+
 
 
 }
