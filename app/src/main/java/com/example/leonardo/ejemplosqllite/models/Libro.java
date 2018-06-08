@@ -35,10 +35,11 @@ public class Libro {
         return autorArrayList;
     }
 
-    public Libro(Integer id, Integer isbn, String nombre, String detalle) {
+    public Libro(Integer id, Integer isbn, String nombre, String detalle, ArrayList<Autor> autorArrayList) {
         this.id = id;
         this.isbn = isbn;
         this.nombre = nombre;
         this.detalle = detalle;
+        this.autorArrayList = autorArrayList;
     }
 }
