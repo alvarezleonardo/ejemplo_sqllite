@@ -14,21 +14,34 @@ import com.example.leonardo.ejemplosqllite.adapters.AutorRscAdapter;
 import com.example.leonardo.ejemplosqllite.models.Autor;
 import com.example.leonardo.ejemplosqllite.models.Libro;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private LibroDAO libroDAO;
     private RecyclerView recyclerViewAutor;
     private AutorRscAdapter autorRscAdapter;
+    protected final String TAG = MainActivity.class.getSimpleName();
+    public static MainActivity interfaz;
+    private ArrayList<Autor> autorArrayList;
+
+    public RecyclerView getRecyclerViewAutor() {
+        return recyclerViewAutor;
+    }
+
+    public ArrayList<Autor> getAutorArrayList() {
+        return autorArrayList;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        interfaz = this;
         libroDAO = new LibroDAO(this);
 
-
-        this.llenarAutor();
-
-
-        autorRscAdapter = new AutorRscAdapter(this, libroDAO.getAllAutor());
+       // this.llenarAutor();
+        autorArrayList = libroDAO.getAllAutor();
+        autorRscAdapter = new AutorRscAdapter(this, autorArrayList);
         recyclerViewAutor = findViewById(R.id.rscAutor);
         recyclerViewAutor.setAdapter(autorRscAdapter);
         recyclerViewAutor.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -40,16 +53,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*
     private void llenarLibro(){
         Autor unAutor = new Autor(2, "Stephen", "King", "Es un comerciante de la literatura");
         Autor unAutorDos = new Autor(3, "Stephen Jr.", "King", "Lo ayuda al padre");
         Libro unlibro = new Libro(1, 1234, "Cujo", "Es un libro de terror");
         unlibro.addAutor(unAutor);
         unlibro.addAutor(unAutorDos);
-
-
-
     }
+    */
 
     public void llenarAutor(){
         ContentValues row = new ContentValues();

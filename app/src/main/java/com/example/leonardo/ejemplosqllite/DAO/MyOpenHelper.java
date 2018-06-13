@@ -51,7 +51,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
             db.execSQL(query);
         }
         if(oldVersion < 3){
-            String query = "alter table libreo add column PRECIO INTEGER";
+            String query = "alter table libro add column PRECIO INTEGER";
             db.execSQL(query);
         }
     }
